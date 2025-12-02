@@ -1,0 +1,57 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "utoobpremium",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-12-02",
+	"observability": {
+		"enabled": true
+	},
+	/**
+	 * Smart Placement
+	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+	 */
+	// "placement": { "mode": "smart" }
+	/**
+	 * Bindings
+	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
+	 * databases, object storage, AI inference, real-time communication and more.
+	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+	 */
+	/**
+	 * Environment Variables
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+	 */
+	// "vars": { "MY_VARIABLE": "production_value" }
+	"vars": {
+		"DISCORD_PUBLIC_KEY": "4aa3f89126dbfc5aca7ab319d780eca6728e64afef560ef37cd1052284a11929",
+		"DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/1291109778298372127/AYt0BqieICORq-PiOxFkbJCHj1SMkJW6hK1rtpi4aj14-BzEUjARiDJpHi9p2Y1XuoT0"
+	},
+	/**
+	 * Note: Use secrets to store sensitive data.
+	 * https://developers.cloudflare.com/workers/configuration/secrets/
+	 */
+	/**
+	 * Static Assets
+	 * https://developers.cloudflare.com/workers/static-assets/binding/
+	 */
+	// "assets": { "directory": "./public/", "binding": "ASSETS" }
+	/**
+	 * Service Bindings (communicate between multiple Workers)
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+	 */
+	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "utoobpremium",
+			"database_id": "2dadfe41-8519-49b3-a2bb-ab30eb677a2a"
+		}
+	],
+	"triggers": {
+		"crons": ["0 0 2 * *"]
+	}
+}
